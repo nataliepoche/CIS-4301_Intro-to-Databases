@@ -1,0 +1,117 @@
+CREATE DATABASE festive;
+
+USE festive;
+
+CREATE TABLE Bars (
+  name     VARCHAR(25),
+  address  VARCHAR(50),
+  license  VARCHAR(4),
+  PRIMARY KEY( name )
+);
+
+INSERT INTO Bars ( name, address, license )
+  VALUES
+  ( 'Happy Hour',       '25 N 1st Street', 'full' ),  ( 'Joes Place',    '1234 E Main Street', 'beer' ),
+  ( 'Sue\'s Bar', '4321 W University Ave', 'full' );
+
+CREATE TABLE Beers (
+  name      VARCHAR(25),
+  brewer    VARCHAR(25),
+  calories  INTEGER,
+  PRIMARY KEY( name )
+);
+
+INSERT INTO Beers ( name, brewer, calories )
+  VALUES
+  (          'Bud', 'Anheuser', 180 ),
+  (    'Bud Light', 'Anheuser', 125 ),
+  (        'Busch', 'Anheuser', 200 ),
+  (       'Corona',    'Crown', 175 ),
+  (       'Modela',    'Crown', 225 ),
+  (          'MGD',   'Miller', 220 ),
+  ( 'Miller Light',   'Miller', 110 ),
+  (   'Wicked Ale',  'Pete\'s', 200 )
+;
+
+CREATE TABLE Drinkers (
+  name     VARCHAR(25),
+  address  VARCHAR(25),
+  phone    VARCHAR(7),
+  PRIMARY KEY( name )
+);
+
+INSERT INTO Drinkers ( name, address, phone )
+  VALUES
+  (  'Corrie',  '1551 E Main Street', 1511551 ),
+  (   'Jenny',      '22 N 2nd Place', 8675309 ),
+  (  'Joseph',  '1551 E Main Street', 5155115 ),
+  ( 'Stephen', '4848 W 84th Terrace', 8884444 ),
+  (   'Vikki',    '342 S Spring Way', 3333342 )
+;
+
+CREATE TABLE Frequents (
+  drinker  VARCHAR(25),
+  bar      VARCHAR(25),
+  PRIMARY KEY( drinker, bar )
+);
+
+INSERT INTO Frequents ( drinker, bar )
+  VALUES
+  (  'Corrie', 'Happy Hour' ),
+  (  'Corrie', 'Joes Place' ),
+  (  'Corrie', 'Sue\'s Bar' ),
+  (   'Jenny', 'Happy Hour' ),
+  (  'Joseph', 'Joes Place' ),
+  (  'Joseph', 'Sue\'s Bar' ),
+  ( 'Stephen', 'Happy Hour' ),
+  ( 'Stephen', 'Joes Place' ),
+  (   'Vikki', 'Sue\'s Bar' )
+;
+
+CREATE TABLE Likes (
+  drinker  VARCHAR(25),
+  beer     VARCHAR(25),
+  PRIMARY KEY( drinker, beer )
+);
+
+INSERT INTO Likes ( drinker, beer )
+  VALUES
+  (  'Corrie',          'Bud' ),
+  (  'Corrie',    'Bud Light' ),
+  (  'Corrie',       'Corona' ),
+  (  'Corrie',       'Modela' ),
+  (  'Corrie',          'MGD' ),
+  (  'Corrie', 'Miller Light' ),
+  (   'Jenny',          'Bud' ),
+  (   'Jenny',        'Busch' ),
+  (  'Joseph',          'Bud' ),
+  (  'Joseph',    'Bud Light' ),
+  (  'Joseph',        'Busch' ),
+  (  'Joseph',       'Corona' ),
+  (  'Joseph',          'MGD' ),
+  (  'Joseph', 'Miller Light' ),
+  (  'Joseph',       'Modela' ),
+  (  'Joseph',   'Wicked Ale' ),
+  ( 'Stephen',          'Bud' ),
+  ( 'Stephen',       'Corona' ),
+  ( 'Stephen', 'Miller Light' ),
+  ( 'Stephen',   'Wicked Ale' ),
+  (   'Vikki',       'Corona' ),
+  (   'Vikki',       'Modela' )
+;
+
+CREATE TABLE Sells (
+  bar    VARCHAR(25),
+  beer   VARCHAR(25),
+  price  FLOAT,
+  PRIMARY KEY( bar, beer )
+);
+
+INSERT INTO Sells ( bar, beer, price )
+  VALUES
+  ( 'Happy Hour',          'Bud', NULL ),  ( 'Happy Hour',    'Bud Light', 2.00 ),  ( 'Happy Hour',        'Busch', 1.25),  ( 'Happy Hour',       'Corona', 2.25 ),  ( 'Happy Hour',       'Modela', 2.50 ),  ( 'Happy Hour',          'MGD', 1.00 ),  ( 'Happy Hour', 'Miller Light', 1.75 ),  ( 'Joes Place',          'Bud', 2.00 ),  ( 'Joes Place',        'Busch', 1.50 ),  ( 'Joes Place',       'Corona', 2.00 ),  ( 'Joes Place',          'MGD', 1.50 ),  ( 'Sue\'s Bar',          'Bud', 1.50 ),
+  ( 'Sue\'s Bar',    'Bud Light', 1.50 ),
+  ( 'Sue\'s Bar',       'Corona', 2.50 ),
+  ( 'Sue\'s Bar',       'Modela', 3.00 ),
+  ( 'Sue\'s Bar',   'Wicked Ale', 2.00 )
+;
